@@ -22,3 +22,4 @@ The ProteusLib documentation is available online at <https://proteuslib.readthed
 ## Developer notes
 
 Refer to the [Getting Started for Developers](https://proteuslib.readthedocs.io/en/latest/getting_started/install.html#for-proteuslib-developers) section of the documentation.
+
