@@ -149,7 +149,7 @@ class CredentialManager:
 
         :return boolean: status of user permission (to write encrypted config_file to disk)
         """
-
+        return True  # FIXME
         if self.test:
             return True
         else:
