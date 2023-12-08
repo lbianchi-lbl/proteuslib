@@ -67,8 +67,8 @@ def auth_credentials() -> dict:
     "Credentials that allow running tests with an authenticated client"
     creds = {"auth_url": "not required when using access keys"}
     try:
-        creds["access_keys"] = [os.environ["OLI_API_KEY"]]
-        creds["root_url"] = os.environ["OLI_API_ROOT_URL"]
+        creds["access_keys"] = [os.environ["OLI_API_KEY"].strip()]
+        creds["root_url"] = os.environ["OLI_API_ROOT_URL"].strip()
     except KeyError as e:
         pytest.skip(f"Authenticated credentials not found in environment variable: {e}")
     return creds
