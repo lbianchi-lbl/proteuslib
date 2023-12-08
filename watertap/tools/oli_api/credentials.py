@@ -274,7 +274,7 @@ class CredentialManager:
                         return True
         if not self.test:
             raise ConnectionError(
-                f" OLI login failed. Status code is {req_result.status_code}."
+                f" OLI login failed. Status code is {req_result.status_code}. Response text is: {req_result.text}"
             )
         else:
             return False
