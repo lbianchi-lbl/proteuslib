@@ -76,7 +76,10 @@ def auth_credentials() -> dict:
 
 @pytest.fixture(scope="function")
 def oliapi_instance(
-    tmp_path: Path, auth_credentials: dict, local_dbs_file: Path
+    tmp_path: Path,
+    auth_credentials: dict,
+    local_dbs_file: Path,
+    monkeypatch: pytest.MonkeyPatch,
 ) -> OLIApi:
 
     if not cryptography_available:
@@ -87,9 +90,9 @@ def oliapi_instance(
         **auth_credentials,
         "config_file": cred_file_path,
     }
-    credential_manager = CredentialManager(**credentials, test=False)
     # disable interactive confirmation prompt for file writing by overwriting method
-    credential_manager._write_permission = lambda *args: True
+    monkeypatch.setattr(CredentialManager, "_write_permission", lambda *args: True)
+    credential_manager = CredentialManager(**credentials, test=False)
     credential_manager.login()
     with OLIApi(credential_manager, test=True) as oliapi:
         oliapi.get_dbs_file_id(str(local_dbs_file))
