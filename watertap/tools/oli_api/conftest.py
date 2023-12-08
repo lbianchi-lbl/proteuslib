@@ -87,7 +87,7 @@ def oliapi_instance(
         **auth_credentials,
         "config_file": cred_file_path,
     }
-    credential_manager = CredentialManager(**credentials, test=True)
+    credential_manager = CredentialManager(**credentials, test=False)
     credential_manager.login()
     with OLIApi(credential_manager, test=True) as oliapi:
         oliapi.get_dbs_file_id(str(local_dbs_file))
