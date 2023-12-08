@@ -88,6 +88,8 @@ def oliapi_instance(
         "config_file": cred_file_path,
     }
     credential_manager = CredentialManager(**credentials, test=False)
+    # disable interactive confirmation prompt for file writing by overwriting method
+    credential_manager._write_permission = lambda *args: True
     credential_manager.login()
     with OLIApi(credential_manager, test=True) as oliapi:
         oliapi.get_dbs_file_id(str(local_dbs_file))
